@@ -1,5 +1,7 @@
 package cn.itrip.auth.service;
 
-public class TokenService {
+public interface TokenService {
+    public String generateToken();
+    public void save();
 
 }

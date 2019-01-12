@@ -2,6 +2,7 @@ package cn.itrip.auth.controller;
 
 import java.util.Calendar;
 
+import cn.itrip.auth.service.TokenService;
 import cn.itrip.common.MD5;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import springfox.documentation.annotations.ApiIgnore;
-import cn.itrip.auth.service.TokenService;
 import cn.itrip.auth.service.UserService;
 import cn.itrip.beans.dto.Dto;
 import cn.itrip.beans.pojo.ItripUser;

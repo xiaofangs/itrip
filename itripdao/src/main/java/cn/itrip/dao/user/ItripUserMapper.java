@@ -18,4 +18,6 @@ public interface ItripUserMapper {
 
 	public Integer deleteItripUserById(@Param(value = "id") Long id)throws Exception;
 
+	public ItripUser getItripUserByUserCode(@Param(value = "userCode") String userCode)throws Exception;
+
 }
