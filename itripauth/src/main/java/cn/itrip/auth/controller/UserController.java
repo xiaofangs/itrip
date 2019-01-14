@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiParam;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -167,4 +168,6 @@ public class UserController {
 		String regex="^1[3578]{1}\\d{9}$";
 		return Pattern.compile(regex).matcher(phone).find();
 	}
+
+
 }

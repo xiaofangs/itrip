@@ -3,6 +3,7 @@ package cn.itrip.auth.controller;
 import java.util.Calendar;
 
 import cn.itrip.auth.service.TokenService;
+import cn.itrip.beans.vo.userinfo.ItripUserVO;
 import cn.itrip.common.MD5;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -48,13 +49,48 @@ public class LoginController {
 			@RequestParam
 			String password,
 			HttpServletRequest request) {
-		
-				return null;
+		    ItripUser user=null;
+		try {
+			user=userService.login(name,MD5.getMd5(password,32));
+			if(EmptyUtils.isNotEmpty(user)){
+				String agent=request.getHeader("user-agent");
+				String token=tokenService.generateToken(agent,user);
+				tokenService.save(agent,user);
+				ItripTokenVO vo=new ItripTokenVO(token,
+						Calendar.getInstance().getTimeInMillis()+2*60*60*1000,
+						Calendar.getInstance().getTimeInMillis());
+				return DtoUtil.returnDataSuccess(vo);
+			}else {
+				return DtoUtil.returnFail("用户名密码错误",ErrorCode.AUTH_AUTHENTICATION_FAILED);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return DtoUtil.returnFail("用户名密码错误",ErrorCode.AUTH_AUTHENTICATION_FAILED);
+		}
 	}
 	
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET,produces="application/json",headers="token")
 	public @ResponseBody Dto logout(HttpServletRequest request){
-		return null;
+		String token=request.getHeader("token");
+		boolean result=tokenService.validate(token,request.getHeader("user-agent"));
+		try {
+			if(result){
+				tokenService.delete(token);
+				return DtoUtil.returnSuccess();
+			}
+			else{
+				return DtoUtil.returnFail("token无效",ErrorCode.AUTH_TOKEN_INVALID);
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			return DtoUtil.returnFail("退出失败",ErrorCode.AUTH_TOKEN_INVALID);
+		}
+
 	}
+
+	//@RequestMapping(value = "/retoken",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"},headers = "token")
+	//public @ResponseBody Dto retoken(HttpServletRequest request){
+
+	//}
 }

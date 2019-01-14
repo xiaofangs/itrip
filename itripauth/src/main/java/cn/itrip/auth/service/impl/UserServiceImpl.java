@@ -83,6 +83,26 @@ public class UserServiceImpl implements UserService{
         return  false;
     }
 
+    @Override
+    public ItripUser login(String userCode, String userPass) throws Exception{
+        ItripUser user=null;
+        try {
+            user=itripUserMapper.getItripUserByUserCode(userCode);
+            if(user!=null){
+                 if(!user.getUserPassword().equals(userCode)){
+                     if(user.getActivated()!=1) {
+                         user = null;
+                         throw new Exception("用户未激活");
+                     }
+                     return user;
+                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 
     public boolean validateByPhone(String phoneNum,String code){
         String key="activation:"+phoneNum;

@@ -8,4 +8,5 @@ public interface UserService {
     public ItripUser SelectByUserCode(String userCode);
     public void ItriptxCreateUser(ItripUser user);
     public boolean activate(String mail,String code);
+    public ItripUser login(String userCode,String userPass) throws Exception;
 }

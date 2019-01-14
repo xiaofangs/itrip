@@ -51,7 +51,40 @@ public class TokenController {
 				})
 		 * 
 		 */
-			return null;
+		String result= null;
+		try {
+			result = tokenService.toloadToken(request.getHeader("user-agent"),request.getHeader("token"));
+			ItripTokenVO vo=new ItripTokenVO(result,
+					Calendar.getInstance().getTimeInMillis()+2*60*60*1000,
+					Calendar.getInstance().getTimeInMillis());
+			return DtoUtil.returnDataSuccess(vo);
+			} catch (Exception e) {
+			e.printStackTrace();
+			return DtoUtil.returnFail(e.getLocalizedMessage(),ErrorCode.AUTH_UNKNOWN);
+		}
+
+
+
 
 	}
+
+	@RequestMapping(value = "/validateToken",method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"},headers = "token")
+	public @ResponseBody Dto validate(HttpServletRequest request){
+		boolean result= tokenService.validate(request.getHeader("token"),request.getHeader("user-agent"));
+       try {
+		   if(result){
+			   return DtoUtil.returnSuccess("token有效");
+		   }else{
+			   return DtoUtil.returnSuccess("token无效");
+		   }
+	   }catch (Exception e){
+       	e.printStackTrace();
+		   return DtoUtil.returnFail(e.getMessage(),ErrorCode.AUTH_UNKNOWN);
+	   }
+
+	}
+
+
+
+
 }
