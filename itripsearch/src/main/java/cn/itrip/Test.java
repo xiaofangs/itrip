@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Test {
 
-    public static String url = "http://localhost:8080/solr/hotel/";
+    public static String url = "http://localhost:8090/solr/hotel/";
 
     public static void main(String[] args) {
         //初始化HttpSolrClient

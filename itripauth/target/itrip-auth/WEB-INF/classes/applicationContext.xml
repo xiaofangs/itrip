@@ -17,12 +17,12 @@
 	<context:annotation-config />
 	<context:property-placeholder location="classpath:database.properties,classpath:sms.properties"/>
 	<bean name="systemConfig" class="cn.itrip.common.SystemConfig">
-		<property name="smsAccountSid" value="${sms.accountSid}" />
-		<property name="smsAuthToken" value="${sms.authToken}" />
-		<property name="smsAppID" value="${sms.appID}" />
-		<property name="smsServerIP" value="${sms.serverIP}" />
-		<property name="smsServerPort" value="${sms.serverPort}" />
-	</bean>
+	<property name="smsAccountSid" value="${sms.accountSid}" />
+	<property name="smsAuthToken" value="${sms.authToken}" />
+	<property name="smsAppID" value="${sms.appID}" />
+	<property name="smsServerIP" value="${sms.serverIP}" />
+	<property name="smsServerPort" value="${sms.serverPort}" />
+     </bean>
 	<!-- JNDI获取数据源(使用dbcp连接池) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" scope="singleton">
 		<property name="driverClassName" value="${mysql.driver}"/>
@@ -86,8 +86,6 @@
 		<constructor-arg value="192.168.192.1"/>
 		<constructor-arg value="6379"/>
 		<constructor-arg value="3000"/>
-		<constructor-arg value="123456"/>
-		<constructor-arg value="0"/>
 	</bean>
 
 	<bean id="redisAPI" class="cn.itrip.common.RedisAPI">

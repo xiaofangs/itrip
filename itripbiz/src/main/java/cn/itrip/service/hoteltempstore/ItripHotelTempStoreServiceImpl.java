@@ -59,10 +59,10 @@ public class ItripHotelTempStoreServiceImpl implements ItripHotelTempStoreServic
     }
 
     /***
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @param roomId    房间ID
-     * @param hotelId   酒店ID
+     * startTime 开始时间
+     * endTime   结束时间
+     * roomId    房间ID
+     * hotelId   酒店ID
      * @return
      * @throws Exception
      */
@@ -73,11 +73,11 @@ public class ItripHotelTempStoreServiceImpl implements ItripHotelTempStoreServic
     }
 
     /***
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @param roomId    房间ID
-     * @param hotelId   酒店ID
-     * @param count     数目
+     * startTime 开始时间
+     * endTime   结束时间
+     * roomId    房间ID
+     * hotelId   酒店ID
+     * count     数目
      * @return
      * @throws Exception
      */
@@ -98,10 +98,10 @@ public class ItripHotelTempStoreServiceImpl implements ItripHotelTempStoreServic
     }
 
     /***
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @param roomId    房间ID
-     * @param count     数目
+     * startTime 开始时间
+     * endTime   结束时间
+     * roomId    房间ID
+     * count     数目
      * @return
      * @throws Exception
      */

@@ -18,22 +18,22 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class SwaggerConfig extends WebMvcConfigurationSupport {
 
-	@Bean
-	public Docket createRestApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(apiInfo())
-				.select()
-				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any())
-				.build();
-	}
-
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("爱旅行-主业务模块API")
-				.termsOfServiceUrl("http://www.itrip.com/biz")
-				.contact("爱旅行项目组")
-				.version("1.0")
-				.build();
-	}
+//	@Bean
+//	public Docket createRestApi() {
+//		return new Docket(DocumentationType.SWAGGER_2)
+//				.apiInfo(apiInfo())
+//				.select()
+//				.apis(RequestHandlerSelectors.any())
+//				.paths(PathSelectors.any())
+//				.build();
+//	}
+//
+//	private ApiInfo apiInfo() {
+//		return new ApiInfoBuilder()
+//				.title("爱旅行-主业务模块API")
+//				.termsOfServiceUrl("http://www.itrip.com/biz")
+//				.contact("爱旅行项目组")
+//				.version("1.0")
+//				.build();
+//	}
 }

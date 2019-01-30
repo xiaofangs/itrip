@@ -55,7 +55,7 @@ public class LoginController {
 			if(EmptyUtils.isNotEmpty(user)){
 				String agent=request.getHeader("user-agent");
 				String token=tokenService.generateToken(agent,user);
-				tokenService.save(agent,user);
+				tokenService.save(token,user);
 				ItripTokenVO vo=new ItripTokenVO(token,
 						Calendar.getInstance().getTimeInMillis()+2*60*60*1000,
 						Calendar.getInstance().getTimeInMillis());

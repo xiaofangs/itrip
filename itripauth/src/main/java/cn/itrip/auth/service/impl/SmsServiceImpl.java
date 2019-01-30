@@ -18,7 +18,7 @@ public class SmsServiceImpl implements SmsService{
         if("000000".equals(map.get("statusCode"))){
             System.out.println("短线发送成功");
         }else{
-           new Exception(map.get("statusCode").toString()+map.get("statusMsg").toString());
+            new Exception(map.get("statusCode").toString()+map.get("statusMsg").toString());
         }
     }
 }

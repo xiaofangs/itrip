@@ -81,8 +81,8 @@ public class UserController {
 		String key ="activation:"+userVO.getUserCode();
         ItripUser user=new ItripUser();
         user.setUserCode(userVO.getUserCode());
-        user.setUserPassword(userVO.getUserPassword());
-        user.setUserName(userVO.getUserName());
+		user.setUserPassword(userVO.getUserPassword());
+		user.setUserName(userVO.getUserName());
         ItripUser users=userService.SelectByUserCode(user.getUserCode());
         if(users!=null){
             return DtoUtil.returnFail("用户已存在",ErrorCode.AUTH_USER_ALREADY_EXISTS);
@@ -102,7 +102,7 @@ public class UserController {
 	@RequestMapping(value="/ckusr",method=RequestMethod.GET,produces= "application/json")
 	public @ResponseBody
 	Dto checkUser(@RequestParam String name) {
-		return null;
+		return DtoUtil.returnSuccess();
 	}
 	
 	

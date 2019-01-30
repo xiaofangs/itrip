@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
             itripUserMapper.insertItripUser(itripusers);
             int code= MD5.getRandomCode();
              smsService.send(itripusers.getUserCode(),"1",new String[]{String.valueOf(code),"1"});
-            redisAPI.set("activation:"+itripusers.getUserCode(),60,String.valueOf(code));
+             redisAPI.set("activation:"+itripusers.getUserCode(),60,String.valueOf(code));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -89,12 +89,14 @@ public class UserServiceImpl implements UserService{
         try {
             user=itripUserMapper.getItripUserByUserCode(userCode);
             if(user!=null){
-                 if(!user.getUserPassword().equals(userCode)){
+                 if(user.getUserPassword().equals(userPass)){
                      if(user.getActivated()!=1) {
                          user = null;
                          throw new Exception("用户未激活");
                      }
                      return user;
+                 }else{
+                     user = null;
                  }
             }
         } catch (Exception e) {

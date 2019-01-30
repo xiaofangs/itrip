@@ -35,7 +35,7 @@ public class TokenServiceImpl implements TokenService {
           String   newToken=this.generateToken(agent,itripUser);
          redisAPI.set(token ,delay,user);
          this.save(newToken,itripUser);
-        return agent;
+        return newToken;
     }
 
     @Override

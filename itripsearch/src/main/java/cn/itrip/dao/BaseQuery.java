@@ -50,7 +50,7 @@ public class BaseQuery<T> {
         QueryResponse queryResponse = httpSolrClient.query(query);
         SolrDocumentList docs = queryResponse.getResults();
         Page<T> page = new Page(currPage+1, query.getRows(), new Long(docs.getNumFound()).intValue());
-        List<T> list = queryResponse.getBeans(clazz);
+         List<T> list = queryResponse.getBeans(clazz);
         page.setRows(list);
         return page;
     }
